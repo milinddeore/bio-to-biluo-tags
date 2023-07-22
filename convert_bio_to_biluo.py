@@ -7,6 +7,7 @@
 
 import spacy
 import json
+import re
 from spacy.training import offsets_to_biluo_tags
 nlp = spacy.load("en_core_web_sm")
 
@@ -26,10 +27,15 @@ with open("biluo_ner.txt","w") as f:
     for sent,tags in ents:
         doc = nlp(sent)
         biluo = offsets_to_biluo_tags(doc,tags['entities'])
+
+        # Convert BILUO to BIOES i.e. 'L-' to 'E-' and 'U-' to 'S-'
+        bioes = [re.sub('^L-','E-', x) for x in biluo]
+        bioes = [re.sub('^U-','S-', x) for x in bioes]
+
         print('----------')
-        print(biluo)
+        print(bioes)
         print('----------')
-        for word,tag in zip(doc, biluo):
+        for word,tag in zip(doc, bioes):
             f.write(f"{word} {tag}\n")
         f.write("\n")
 
