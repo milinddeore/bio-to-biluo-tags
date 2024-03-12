@@ -1,9 +1,6 @@
 # -*- coding:utf8 -*-
 # !/usr/bin/env python
-# Copyright (C) nonymus - All Rights Reserved
-# Unauthorized copying of this file, via any medium is strictly prohibited
-# Proprietary and confidential
-# Written by Milind Deore <milind.deore@nonym.us>, June 2023
+# Written by Milind Deore <tomdeore@gmail.com>, June 2023
 
 import spacy
 import json
